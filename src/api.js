@@ -22,6 +22,19 @@ app.post('/send', upload.single('anexo'), (req, res, next) => {
         .catch(error => res.json(error));
 })
 
+app.post('/orcamento', upload.single('anexo'), (req, res, next) => { 
+    const nome = req.body.nome;
+    const email = req.body.email;
+    const telefone = req.body.telefone;
+    const metragem = req.body.metragem;
+    const tecido = req.body.tecido;
+    const descricao = req.body.descricao;
+    const anexo = req.file;
+    require("./nodemail")(email, nome, telefone, metragem, tecido, descricao, anexo)
+        .then(response => res.json(response))
+        .catch(error => res.json(error));
+})
+
 const server = http.createServer(app); 
 server.listen(3030);
 console.log("Servidor escutando na porta 3030...")
