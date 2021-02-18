@@ -5,6 +5,9 @@
   "repository": "https://github.com/MFarsetti/lbm-mailer.git",
   "author": "MFarsetti <matheus.farsetti@hotmail.com>",
   "license": "MIT",
+  "scripts":{
+    "start": "nodemon src/api.js"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
