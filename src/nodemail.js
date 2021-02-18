@@ -1,6 +1,6 @@
 const mailer = require("nodemailer");
 
-module.exports = (email, nome, telefone, metragem, mensagem, tecido, descricao, anexo) => {
+module.exports = (email, nome, telefone, mensagem, metragem, tecido, descricao, anexo) => {
     const smtpTransport = mailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
@@ -16,7 +16,7 @@ module.exports = (email, nome, telefone, metragem, mensagem, tecido, descricao, 
     
     const mail = {
         from: "Sedafio <sedafiotecidos@gmail.com>",
-        to: ["matheusfarsetti@agencialbm.com.br"],
+        to: ["matheusfarsetti@agencialbm.com.br", "sedafio@sedafio.com.br"],
         subject: `${nome} te enviou uma mensagem`,
         html: `
         <html>
