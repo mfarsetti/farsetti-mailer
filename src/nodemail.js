@@ -1,6 +1,8 @@
 const mailer = require("nodemailer");
 
-module.exports = (email, nome, telefone, mensagem, metragem, tecido, descricao, anexo) => {
+module.exports = (body) => {
+    const {email, nome, telefone, mensagem, metragem, tecido, descricao, anexo} = body
+    console.log(body)
     const smtpTransport = mailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
@@ -13,18 +15,14 @@ module.exports = (email, nome, telefone, mensagem, metragem, tecido, descricao, 
           rejectUnauthorized: false
       }
     })
-
-    console.log("email", email)
-    console.log("nome", nome)
-    console.log("telefone", telefone)
-    console.log("mensagem", mensagem)
-    console.log("metragem", metragem)
-    console.log("descricao", descricao)
-    console.log("anexo", anexo)
+    let msg
+    if(mensagem){
+      msg = mensagem
+    }
     
     const mail = {
         from: "Sedafio <sedafiotecidos@gmail.com>",
-        to: ["matheusfarsetti@agencialbm.com.br", "sedafio@sedafio.com.br"],
+        to: ["matheusfarsetti@agencialbm.com.br"],
         subject: `${nome} te enviou uma mensagem`,
         html: `
         <html>
@@ -33,7 +31,7 @@ module.exports = (email, nome, telefone, mensagem, metragem, tecido, descricao, 
           ${nome ? `<p>Nome: ${nome}</p>` : ''}
           ${email ? `<p>Email: ${email}</p>` : ''}
           ${telefone ? `<p>Telefone: ${telefone}</p>` : ''}
-          ${mensagem ? `<p>Mensagem: ${mensagem}</p>` : ''}
+          ${msg ? `<p>Mensagem: ${msg}</p>` : ''}
           ${metragem ? `<p>metragem: ${metragem}</p>` : ''}
           ${tecido ? `<p>tecido: ${tecido}</p>` : ''}
           ${descricao ? `<p>descricao: ${descricao}</p>` : ''}
