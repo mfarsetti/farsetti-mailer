@@ -13,6 +13,14 @@ module.exports = (email, nome, telefone, mensagem, metragem, tecido, descricao, 
           rejectUnauthorized: false
       }
     })
+
+    console.log("email", email)
+    console.log("nome", nome)
+    console.log("telefone", telefone)
+    console.log("mensagem", mensagem)
+    console.log("metragem", metragem)
+    console.log("descricao", descricao)
+    console.log("anexo", anexo)
     
     const mail = {
         from: "Sedafio <sedafiotecidos@gmail.com>",
