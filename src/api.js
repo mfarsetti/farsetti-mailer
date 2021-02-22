@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const upload = require("multer")();
+const nodemailer = require("./nodemail");
 
 app.use(require("cors")()); 
 app.use(bodyParser.json());
@@ -12,13 +13,15 @@ app.get('/', (req, res, next) => {
 })
 
 app.post('/send', upload.single('anexo'), (req, res, next) => { 
-    require("./nodemail")(req.body)
+    nodemailer(req.body)
         .then(response => res.json(response))
         .catch(error => res.json(error));
 })
 
-app.post('/orcamento', upload.single('anexo'), (req, res, next) => { 
-    require("./nodemail")(req.body, req.file)
+app.post('/orcamento', upload.single('anexo'), (req, res, next) => {
+    const anexo = req.file;
+    console.log('req', req)
+    nodemailer(req.body, anexo)
         .then(response => res.json(response))
         .catch(error => res.json(error));
 })
