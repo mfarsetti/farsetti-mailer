@@ -23,7 +23,7 @@ module.exports = (body, anexo) => {
     
     const mail = {
         from: "Sedafio <sedafiotecidos@gmail.com>",
-        to: ["matheusfarsetti@agencialbm.com.br"],
+        to: ["matheusfarsetti@agencialbm.com.br", "sedafio@sedafio.com.br"],
         subject: `${nome} te enviou uma mensagem`,
         html: `
         <html>
